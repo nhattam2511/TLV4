@@ -3,206 +3,102 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Học văn tả con vật - Công cụ học hiểu và học thuộc</title>
+<title>Đọc hiểu văn bản - Công cụ hỗ trợ</title>
 <style>
+
 :root{
-  --bg:#f4f7fb; --bg2:#eaf2ff; --ink:#102033; --muted:#607089; --line:#dbe7f5;
-  --card:#ffffff; --primary:#2563eb; --primary2:#1d4ed8; --green:#16a34a;
-  --amber:#f59e0b; --red:#ef4444; --purple:#7c3aed; --cyan:#0891b2;
-  --soft-blue:#eff6ff; --soft-green:#ecfdf5; --soft-amber:#fffbeb; --soft-red:#fef2f2;
-  --shadow:0 14px 36px rgba(15,23,42,.09);
+  --bg:#f7fbff;--ink:#122033;--muted:#64748b;--line:#dbeafe;--card:#fff;
+  --primary:#2563eb;--primary2:#1d4ed8;--green:#16a34a;--amber:#f59e0b;--red:#ef4444;--purple:#7c3aed;
+  --shadow:0 18px 45px rgba(15,23,42,.10);
 }
 *{box-sizing:border-box;min-width:0}
 html,body{margin:0;width:100%;overflow-x:hidden}
 body{
   min-height:100vh;font-family:"Segoe UI",Arial,sans-serif;color:var(--ink);
   background:
-    radial-gradient(circle at 8% 10%,rgba(37,99,235,.13),transparent 26%),
-    radial-gradient(circle at 88% 14%,rgba(245,158,11,.13),transparent 24%),
-    radial-gradient(circle at 70% 82%,rgba(22,163,74,.10),transparent 28%),
-    linear-gradient(135deg,#f8fbff,#eef6ff 52%,#fff7ed);
-  padding-bottom:82px;
+    radial-gradient(circle at 9% 7%,rgba(37,99,235,.14),transparent 27%),
+    radial-gradient(circle at 91% 14%,rgba(245,158,11,.15),transparent 24%),
+    radial-gradient(circle at 70% 86%,rgba(22,163,74,.10),transparent 28%),
+    linear-gradient(135deg,#f8fbff,#eef6ff 54%,#fff7ed);
+  padding-bottom:86px;
 }
-button,input,textarea{font-family:inherit}
-.container{width:min(1220px,calc(100% - 28px));margin:auto;padding:24px 0 64px}
+button{font-family:inherit}
+.container{width:min(1000px,calc(100% - 28px));margin:auto;padding:24px 0 64px}
 .hero{
-  border-radius:28px;padding:24px;box-shadow:var(--shadow);
-  background:linear-gradient(135deg,#0f3f9c,#2563eb 55%,#0891b2);color:#fff;overflow:hidden;position:relative;
+  border-radius:30px;padding:25px;box-shadow:var(--shadow);color:#fff;overflow:hidden;position:relative;
+  background:linear-gradient(135deg,#0f3f9c,#2563eb 55%,#0891b2);
 }
-.hero::after{content:"";position:absolute;right:-72px;top:-82px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.16)}
-.hero h1{margin:0;font-size:clamp(1.65rem,3.4vw,3rem);line-height:1.15}
-.hero p{max-width:940px;margin:10px 0 0;line-height:1.6;font-weight:700;color:rgba(255,255,255,.93)}
-.hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-.hero-chip{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:7px 11px;font-weight:900;font-size:.9rem}
-
-.essay-tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
-.essay-tab{border:1px solid rgba(255,255,255,.9);background:rgba(255,255,255,.82);border-radius:22px;padding:14px;display:flex;align-items:center;gap:12px;text-align:left;cursor:pointer;box-shadow:0 8px 22px rgba(15,23,42,.06);transition:.16s}
-.essay-tab:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(15,23,42,.09)}
-.essay-tab.active{background:#fff;border-color:#93c5fd;box-shadow:0 0 0 4px rgba(147,197,253,.28),0 14px 28px rgba(15,23,42,.08)}
-.emoji{width:52px;height:52px;border-radius:17px;display:flex;align-items:center;justify-content:center;font-size:30px;flex:0 0 auto;color:#fff}
-.dog .emoji{background:linear-gradient(135deg,#f59e0b,#fb7185)}.cat .emoji{background:linear-gradient(135deg,#06b6d4,#22c55e)}.rooster .emoji{background:linear-gradient(135deg,#ef4444,#f97316)}
-.tab-title{font-size:1.08rem;font-weight:1000}.tab-sub{margin-top:3px;color:var(--muted);font-weight:800;font-size:.88rem}
-
-.top-dashboard{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:16px}
-.metric{background:rgba(255,255,255,.88);border:1px solid rgba(255,255,255,.94);border-radius:20px;padding:13px;box-shadow:0 8px 22px rgba(15,23,42,.06)}
-.metric-label{font-size:.78rem;text-transform:uppercase;color:var(--muted);font-weight:1000;letter-spacing:.04em}
-.metric-value{margin-top:4px;font-size:1.35rem;font-weight:1000;color:#102a5c}
-.metric-note{font-size:.82rem;color:var(--muted);font-weight:800;margin-top:2px}
-
-.layout{display:grid;grid-template-columns:330px minmax(0,1fr);gap:18px;margin-top:18px;align-items:start}
-.panel{background:rgba(255,255,255,.92);border:1px solid rgba(255,255,255,.92);border-radius:26px;box-shadow:var(--shadow);overflow:hidden}
-.panel-head{padding:14px 17px;background:linear-gradient(135deg,rgba(37,99,235,.10),rgba(8,145,178,.10));border-bottom:1px solid #e7eef8;font-weight:1000;color:#102a5c;display:flex;justify-content:space-between;gap:10px;align-items:center}
-.panel-body{padding:16px}
-.small{font-size:.84rem;color:var(--muted);font-weight:800}
-.outline-list{display:flex;flex-direction:column;gap:10px}
-.outline-card{border:1px solid #e4edf7;background:#fff;border-radius:20px;padding:12px;text-align:left;cursor:pointer;transition:.16s}
-.outline-card:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(15,23,42,.07)}
-.outline-card.active{border-color:#60a5fa;background:#eff6ff;box-shadow:0 0 0 4px rgba(96,165,250,.18)}
-.outline-card.done{border-color:#86efac}
-.outline-row{display:flex;align-items:center;gap:8px;justify-content:space-between}
-.part-pill{border-radius:999px;padding:5px 8px;font-size:.75rem;font-weight:1000;white-space:nowrap}
-.part-intro{background:#dcfce7;color:#166534}.part-body{background:#dbeafe;color:#1d4ed8}.part-end{background:#fce7f3;color:#be185d}
-.score-pill{border-radius:999px;padding:5px 8px;font-weight:1000;font-size:.78rem;background:#f1f5f9;color:#64748b;white-space:nowrap}
-.score-good{background:#dcfce7;color:#15803d}.score-mid{background:#fef3c7;color:#b45309}.score-bad{background:#fee2e2;color:#b91c1c}
-.outline-title{font-weight:1000;margin-top:8px}.outline-purpose{color:#526179;line-height:1.45;font-size:.91rem;font-weight:760;margin-top:4px}
-.progress-track{height:9px;background:#e2e8f0;border-radius:999px;overflow:hidden;margin-top:9px}
-.progress-fill{height:100%;border-radius:999px;background:var(--primary);width:0%}
-
-.main-stack{display:flex;flex-direction:column;gap:18px}
-.reader-actions,.tool-tabs,.btn-row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+.hero::after{content:"";position:absolute;right:-70px;top:-85px;width:250px;height:250px;border-radius:50%;background:rgba(255,255,255,.16)}
+.hero h1{margin:0;font-size:clamp(1.65rem,3.4vw,3rem);line-height:1.14;position:relative;z-index:1}
+.hero-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:15px;position:relative;z-index:1}
+.hero-chip{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.30);border-radius:999px;padding:8px 11px;font-weight:900;font-size:.9rem}
+.text-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
+.text-tab{border:1px solid rgba(255,255,255,.96);background:rgba(255,255,255,.86);border-radius:22px;padding:14px;display:flex;gap:12px;text-align:left;cursor:pointer;box-shadow:0 9px 22px rgba(15,23,42,.06);transition:.16s}
+.text-tab:hover{transform:translateY(-2px);box-shadow:0 14px 26px rgba(15,23,42,.10)}
+.text-tab.active{background:#fff;border-color:#93c5fd;box-shadow:0 0 0 4px rgba(147,197,253,.28),0 14px 28px rgba(15,23,42,.08)}
+.emoji{width:54px;height:54px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;flex:0 0 auto;color:#fff}
+.earth .emoji{background:linear-gradient(135deg,#10b981,#2563eb)}.bac .emoji{background:linear-gradient(135deg,#ef4444,#f59e0b)}
+.tab-title{font-size:1.05rem;font-weight:1000}.tab-sub{margin-top:3px;color:var(--muted);font-weight:800;font-size:.88rem}
+.layout{margin-top:24px;}
+.panel{background:rgba(255,255,255,.93);border:1px solid rgba(255,255,255,.93);border-radius:26px;box-shadow:var(--shadow);overflow:hidden}
+.panel-head{padding:14px 17px;background:linear-gradient(135deg,rgba(37,99,235,.10),rgba(8,145,178,.10));border-bottom:1px solid #e7eef8;font-weight:1000;color:#102a5c;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;}
+.panel-body{padding:20px}
+.reader-actions{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
 .btn{border:0;border-radius:999px;padding:10px 14px;font-weight:1000;cursor:pointer;transition:.16s;line-height:1.2}
 .btn:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(15,23,42,.12)}
-.btn-primary{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff}.btn-light{background:#fff;color:#102a5c;border:1px solid #dbe7f5}.btn-green{background:#16a34a;color:#fff}.btn-amber{background:#f59e0b;color:#fff}.btn-red{background:#ef4444;color:#fff}.btn-purple{background:#7c3aed;color:#fff}
-.tool-tabs{padding:10px;background:#f8fbff;border-radius:20px;border:1px solid #e7eef8}
-.tool-tab{background:transparent;border:0;padding:9px 12px;border-radius:999px;cursor:pointer;font-weight:1000;color:#526179}
-.tool-tab.active{background:#fff;color:#1d4ed8;box-shadow:0 6px 16px rgba(15,23,42,.07)}
-
-.legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-.legend span{border-radius:999px;padding:6px 9px;background:#f8fafc;border:1px solid #e2e8f0;font-weight:850;font-size:.83rem;color:#526179}
-.model-paras{display:flex;flex-direction:column;gap:11px}
-.para{background:#fff;border:1px solid #e5edf6;border-radius:20px;padding:14px;transition:.16s}
-.para.active{border-color:#facc15;background:#fffbea;box-shadow:0 0 0 4px rgba(250,204,21,.16)}
-.para.dim{opacity:.45}
+.btn-primary{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff}.btn-light{background:#fff;color:#102a5c;border:1px solid #dbe7f5}
+.btn-active{background:#eff6ff;color:#1d4ed8;border:1px solid #93c5fd;box-shadow:0 0 0 2px rgba(147,197,253,.28)}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.legend span{border-radius:999px;padding:6px 9px;background:#f8fafc;border:1px solid #e2e8f0;font-weight:850;font-size:.83rem;color:#526179}
+.model-paras{display:flex;flex-direction:column;gap:14px}
+.para{background:#fff;border:1px solid #e5edf6;border-radius:20px;padding:18px;transition:.16s}
+.para:hover{box-shadow:0 8px 24px rgba(15,23,42,.06)}
 .para-label{display:inline-flex;border-radius:999px;background:#eef2ff;color:#3730a3;padding:4px 9px;font-size:.75rem;font-weight:1000;margin-bottom:8px}
-.sentence{line-height:2.05;font-weight:650;border-radius:8px;padding:2px 4px;transition:.16s}
-.sentence.hl{background:#fef08a;font-weight:850;box-shadow:0 0 0 3px rgba(250,204,21,.18)}
-.keyword{background:#dbeafe;color:#1e40af;border-radius:7px;padding:1px 4px;font-weight:900}
-
-.task-card{border:1px solid #e4edf7;background:#f8fbff;border-radius:22px;padding:14px;margin-bottom:13px}
-.task-title{margin:0 0 6px;font-size:1.05rem;color:#102a5c}
-.task-card p{margin:0;color:#526179;font-weight:780;line-height:1.55}
-.idea-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
-.idea-item{border:1px solid #e4edf7;background:#fff;border-radius:16px;padding:10px;font-weight:820;color:#334155;line-height:1.35}
-.idea-item.hit{background:#ecfdf5;border-color:#86efac;color:#166534}.idea-item.miss{background:#fff7ed;border-color:#fed7aa;color:#9a3412}
-.work-grid{display:grid;grid-template-columns:minmax(0,1fr)330px;gap:14px;align-items:start}
-textarea{width:100%;min-height:230px;resize:vertical;border:2px solid #e2e8f0;border-radius:22px;padding:15px;font-size:1.04rem;line-height:1.75;outline:none;background:#fff;color:#102033}
-textarea:focus{border-color:#60a5fa;box-shadow:0 0 0 5px rgba(96,165,250,.18)}
-.livebar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
-.live-item{border-radius:16px;background:#fff;border:1px solid #e4edf7;padding:10px}
-.live-label{font-size:.74rem;text-transform:uppercase;color:#64748b;font-weight:1000}.live-value{font-weight:1000;color:#102a5c;margin-top:2px}
-.score-box{background:#fff;border:1px solid #e4edf7;border-radius:22px;padding:13px}
-.big-score{text-align:center;border-radius:20px;padding:14px;background:#f8fafc}
-.big-score.good{background:#dcfce7;color:#166534}.big-score.mid{background:#fef3c7;color:#92400e}.big-score.bad{background:#fee2e2;color:#991b1b}
-.score-num{font-size:2.6rem;line-height:1;font-weight:1000}.score-status{font-weight:1000;margin-top:4px}
-.bar-row{margin-top:11px}.bar-top{display:flex;justify-content:space-between;font-size:.78rem;font-weight:1000;color:#526179;margin-bottom:4px}.bar{height:9px;border-radius:999px;background:#e2e8f0;overflow:hidden}.bar div{height:100%;border-radius:999px;background:#2563eb}
-.feedback{margin-top:12px;border-top:1px solid #e4edf7;padding-top:12px}
-.feedback h4{margin:0 0 7px;color:#102a5c}.feedback ul{margin:0;padding-left:19px}.feedback li{margin:6px 0;line-height:1.45;color:#475569;font-weight:760}
-.tag-list{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}
-.tag{border:1px solid #dbeafe;background:#eff6ff;color:#1d4ed8;border-radius:999px;padding:6px 9px;font-size:.84rem;font-weight:900;cursor:pointer}
-.tag:hover{background:#dbeafe}.tag.good{background:#dcfce7;color:#15803d;border-color:#86efac}.tag.warn{background:#fffbeb;color:#b45309;border-color:#fde68a}.tag.bad{background:#fee2e2;color:#b91c1c;border-color:#fecaca}
-
-.vocab-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.vocab-card{border:1px solid #e4edf7;background:#fff;border-radius:20px;padding:13px}
-.vocab-card h3{margin:0 0 8px;color:#102a5c;font-size:1rem}
-.pattern-list{display:grid;gap:8px;margin-top:10px}
-.pattern{border-left:4px solid #60a5fa;background:#f8fbff;border-radius:14px;padding:9px 10px;font-weight:820;color:#334155}
-
-.memory-grid{display:grid;grid-template-columns:minmax(0,1fr)340px;gap:14px;align-items:start}
-.memory-model{border:1px dashed #93c5fd;background:#eff6ff;border-radius:20px;padding:14px;line-height:1.9;font-weight:720}
-.blank{display:inline-block;min-width:56px;border-bottom:3px solid #2563eb;color:transparent;margin:0 2px}
-.memory-result{margin-top:12px}
-.compare-list{display:grid;gap:8px;margin-top:10px}
-.compare-item{border-radius:16px;padding:10px;border:1px solid #e4edf7;background:#fff;font-weight:760;color:#475569}
-.compare-item.good{background:#ecfdf5;border-color:#86efac;color:#166534}.compare-item.warn{background:#fff7ed;border-color:#fed7aa;color:#9a3412}
-
-.exercise-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.exercise-box{border:1px solid #e4edf7;background:#fff;border-radius:22px;padding:13px}
-.exercise-box h3{margin:0 0 8px;color:#102a5c;font-size:1.02rem}
-.bank,.answer-bank{min-height:120px;border:2px dashed #cbd5e1;background:#f8fafc;border-radius:18px;padding:10px;display:flex;flex-direction:column;gap:8px}
-.chip{border:1px solid #dbeafe;background:#fff;border-radius:14px;padding:9px 10px;text-align:left;cursor:pointer;font-weight:780;line-height:1.45}
-.chip:hover{box-shadow:0 8px 16px rgba(15,23,42,.07);transform:translateY(-1px)}.chip.used{opacity:.35}.answer-chip{border:1px solid #bbf7d0;background:#f0fdf4;border-radius:14px;padding:9px 10px;font-weight:800;line-height:1.45}
-.flashcards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}
-.flashcard{border:1px solid #e4edf7;background:#fff;border-radius:18px;padding:12px;cursor:pointer;min-height:106px}
-.flash-q{font-weight:1000;color:#102a5c}.flash-a{margin-top:8px;color:#166534;font-weight:820;line-height:1.45;display:none}.flashcard.open .flash-a{display:block}
-
-.floating{position:fixed;left:50%;bottom:max(8px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:50;display:flex;gap:8px;align-items:center;background:rgba(255,255,255,.94);border:1px solid #dbe7f5;border-radius:999px;padding:8px 11px;box-shadow:0 18px 44px rgba(15,23,42,.16);backdrop-filter:blur(10px)}
-.float-btn{border:0;background:#2563eb;color:#fff;width:38px;height:38px;border-radius:50%;font-weight:1000;cursor:pointer}.float-label{font-weight:1000;color:#102a5c;max-width:46vw;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.toast{position:fixed;right:16px;top:16px;background:linear-gradient(135deg,#0f766e,#2563eb);color:#fff;border-radius:999px;padding:11px 16px;font-weight:1000;box-shadow:0 14px 30px rgba(15,23,42,.22);opacity:0;transform:translateY(-8px);transition:.2s;z-index:99}.toast.show{opacity:1;transform:translateY(0)}
-.hidden{display:none!important}
-
-@media(max-width:980px){
-  .layout,.work-grid,.memory-grid,.exercise-grid{grid-template-columns:1fr}
-  .top-dashboard{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .essay-tabs{grid-template-columns:1fr}
-  .vocab-grid,.idea-grid,.flashcards{grid-template-columns:1fr}
-}
+.para-text{line-height:1.95;font-weight:650;font-size:1.05rem}
+.para-text strong{font-weight:1000;color:#0f172a}
+.full-essay{background:#fff;border:1px solid #e5edf6;border-radius:24px;padding:26px;box-shadow:0 10px 24px rgba(15,23,42,.06)}
+.full-essay h2{margin:0 0 6px;color:#102a5c;font-size:1.6rem;line-height:1.25;text-transform:uppercase}
+.full-meta{color:#64748b;font-weight:900;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid #e2e8f0}
+.full-essay p{margin:0 0 16px;line-height:1.95;font-weight:650;text-indent:1.65em;font-size:1.05rem}.full-essay p:last-child{margin-bottom:0}
+.keyword{background:#dcfce7;color:#166534;border-radius:6px;padding:2px 5px;font-weight:900;border:1px solid #bbf7d0}
+.floating{position:fixed;left:50%;bottom:max(16px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:50;display:flex;gap:8px;align-items:center;background:rgba(255,255,255,.94);border:1px solid #dbe7f5;border-radius:999px;padding:8px 11px;box-shadow:0 18px 44px rgba(15,23,42,.16);backdrop-filter:blur(10px)}
+.float-btn{border:0;background:#2563eb;color:#fff;width:38px;height:38px;border-radius:50%;font-weight:1000;cursor:pointer}
 @media(max-width:560px){
-  .container{width:min(100% - 18px,1220px);padding-top:14px}
+  .container{width:min(100% - 18px,1240px);padding-top:14px}
+  .text-tabs{grid-template-columns:1fr}
   .hero{padding:20px 16px;border-radius:22px}
   .panel{border-radius:22px}
-  .livebar{grid-template-columns:1fr}
-  .floating{width:calc(100vw - 18px);justify-content:center}
-  .float-label{max-width:36vw;font-size:.86rem}
 }
+
 </style>
 </head>
 <body>
-<div class="toast" id="toast">Đã lưu</div>
+
 <div class="container">
   <section class="hero">
-    <h1>MIÊU TẢ CON VẬT</h1>
+    <h1>THỂ HIỆN CẢM XÚC</h1>
     <div class="hero-chips">
-      <span class="hero-chip">🎯 Mục tiêu 80%</span><span class="hero-chip">🧠 Viết lại từ trí nhớ</span><span class="hero-chip">📝 Chấm điểm chi tiết</span><span class="hero-chip">💬 Gợi ý từ vựng</span>
+      <span class="hero-chip">📖 Đọc và cảm nhận</span>
+      <span class="hero-chip">👀 Xem theo đoạn</span>
+      <span class="hero-chip">🖍️ Highlight từ khóa</span>
     </div>
   </section>
 
-  <section id="essayTabs" class="essay-tabs"></section>
-  <section id="dashboard" class="top-dashboard"></section>
+  <section id="textTabs" class="text-tabs"></section>
 
   <section class="layout">
-    <aside class="panel">
-      <div class="panel-head"><span>🧭 Dàn ý học bài</span><span class="small">Bấm để học</span></div>
-      <div class="panel-body">
-        <div id="outlineList" class="outline-list"></div>
-      </div>
-    </aside>
-
     <main class="main-stack">
       <section class="panel">
         <div class="panel-head">
-          <span>👀 Bài mẫu tương tác</span>
+          <span>👀 Trình bày văn bản</span>
           <div class="reader-actions">
-            <button class="btn btn-light" onclick="setModelMode('full')">Xem đủ</button>
-            <button class="btn btn-light" onclick="setModelMode('focus')">Chỉ đoạn này</button>
-            <button class="btn btn-light" onclick="toggleKeywords()">Tô từ khóa</button>
+            <button id="btnWhole" class="btn btn-primary" onclick="setModelMode('whole')">Xem full cả bài</button>
+            <button id="btnPara" class="btn btn-light" onclick="setModelMode('full')">Xem theo đoạn</button>
+            <button id="btnKw" class="btn btn-light" onclick="toggleKeywords()">Tô từ khóa</button>
           </div>
         </div>
         <div class="panel-body">
-          <div class="legend"><span>🟨 Câu đang học</span><span>🔵 Từ khóa cần nhớ</span><span>✅ Dàn ý bên trái luôn nối với bài mẫu</span></div>
+          <div class="legend"><span>🟢 Từ khóa miêu tả & cảm xúc</span></div>
           <div id="modelText" class="model-paras"></div>
-        </div>
-      </section>
-
-      <section class="panel">
-        <div class="panel-head"><span>🧰 Bộ công cụ học và viết</span><span id="activeLabel" class="small"></span></div>
-        <div class="panel-body">
-          <div class="tool-tabs">
-            <button class="tool-tab active" data-tool="practice" onclick="setTool('practice')">✍️ Luyện viết</button>
-            <button class="tool-tab" data-tool="memory" onclick="setTool('memory')">🧠 Viết lại để thuộc</button>
-            <button class="tool-tab" data-tool="vocab" onclick="setTool('vocab')">💬 Từ vựng & cách viết</button>
-            <button class="tool-tab" data-tool="exercise" onclick="setTool('exercise')">🧩 Ghi nhớ nhanh</button>
-          </div>
-          <div id="toolRoot" style="margin-top:14px"></div>
         </div>
       </section>
     </main>
@@ -211,434 +107,124 @@ textarea:focus{border-color:#60a5fa;box-shadow:0 0 0 5px rgba(96,165,250,.18)}
 
 <div class="floating">
   <button class="float-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
-  <button class="float-btn" onclick="jumpTool('practice')">✍</button>
-  <button class="float-btn" onclick="jumpTool('memory')">🧠</button>
-  <span class="float-label" id="floatLabel">Học văn</span>
 </div>
 
 <script>
-const ESSAYS = [{"id": "dog", "emoji": "🐶", "title": "Bài 1: Tả con chó", "name": "chú chó Milu", "theme": "dog", "animalWords": ["chó", "Milu", "gâu gâu", "canh nhà", "giữ nhà", "vẫy đuôi", "bốn chân"], "paras": [{"part": "Mở bài", "sentences": ["Trong cuộc sống, mỗi con vật nuôi đều mang đến cho con người một niềm vui riêng.", "Có con vật giúp bắt chuột, có con vật báo thức mỗi sáng, lại có con vật trung thành canh giữ nhà cửa.", "Với em, con vật đáng yêu và gần gũi nhất chính là chú chó Milu của gia đình em."]}, {"part": "Thân bài - ngoại hình", "sentences": ["Milu đã sống với nhà em được hơn hai năm.", "Chú có thân hình chắc khỏe, bộ lông màu vàng óng, mềm mượt như tơ.", "Cái đầu chú tròn tròn, hai chiếc tai lúc nào cũng vểnh lên như đang chăm chú lắng nghe mọi âm thanh xung quanh.", "Đôi mắt Milu đen láy, tròn xoe, ánh lên vẻ thông minh và lanh lợi.", "Chiếc mũi nhỏ màu đen luôn ươn ướt, đánh hơi rất thính.", "Cái đuôi dài của chú thường vẫy tít mỗi khi thấy em đi học về."]}, {"part": "Thân bài - hoạt động", "sentences": ["Milu rất khôn ngoan và có ích.", "Ban ngày, chú thường nằm trước hiên nhà, vừa lim dim ngủ vừa canh chừng.", "Hễ có người lạ đến cổng, Milu liền sủa “gâu gâu” thật to như báo cho cả nhà biết.", "Nhưng khi gặp người quen, chú lại vui vẻ chạy ra, vẫy đuôi mừng rỡ.", "Mỗi buổi chiều, em thường chơi ném bóng với Milu.", "Chú chạy rất nhanh, ngậm quả bóng mang về cho em rồi ngước mắt nhìn như muốn được khen."]}, {"part": "Thân bài - tình cảm", "sentences": ["Điều em thích nhất ở Milu là sự trung thành.", "Dù em vui hay buồn, chú vẫn luôn quấn quýt bên cạnh.", "Có hôm em bị điểm chưa tốt, em ngồi buồn ở góc sân, Milu nhẹ nhàng dụi đầu vào chân em như đang an ủi.", "Lúc ấy, em cảm thấy lòng mình ấm áp hơn rất nhiều."]}, {"part": "Kết bài", "sentences": ["Em rất yêu quý chú chó Milu.", "Với gia đình em, Milu không chỉ là con vật nuôi để giữ nhà mà còn là một người bạn thân thiết.", "Em sẽ luôn chăm sóc chú thật tốt để Milu mãi khỏe mạnh, vui vẻ và ở bên gia đình em thật lâu."]}], "outline": [{"id": "intro", "type": "intro", "title": "Mở bài: giới thiệu Milu", "purpose": "Dẫn từ con vật nuôi trong cuộc sống rồi giới thiệu chú chó Milu.", "refs": [[0, 0], [0, 1], [0, 2]], "ideaGroups": [{"label": "Con vật nuôi mang niềm vui", "terms": ["con vật nuôi", "niềm vui", "cuộc sống"]}, {"label": "Nêu ích lợi chung", "terms": ["bắt chuột", "báo thức", "giữ nhà", "canh giữ"]}, {"label": "Giới thiệu Milu", "terms": ["chó", "Milu", "gia đình", "gần gũi", "đáng yêu"]}], "vocab": ["con vật nuôi", "niềm vui riêng", "trung thành", "canh giữ", "đáng yêu", "gần gũi"], "patterns": ["Dẫn chung → giới thiệu con vật", "Với em, ... chính là ...", "Không cần kể quá dài ở mở bài"]}, {"id": "look", "type": "body", "title": "Thân bài 1: ngoại hình", "purpose": "Tả bao quát rồi tả các bộ phận nổi bật của Milu.", "refs": [[1, 0], [1, 1], [1, 2], [1, 3], [1, 4], [1, 5]], "ideaGroups": [{"label": "Thời gian sống / bao quát", "terms": ["hơn hai năm", "thân hình", "chắc khỏe"]}, {"label": "Bộ lông", "terms": ["bộ lông", "vàng óng", "mềm mượt"]}, {"label": "Đầu, tai, mắt", "terms": ["đầu", "tai", "mắt", "đen láy", "tròn xoe"]}, {"label": "Mũi, đuôi", "terms": ["mũi", "ươn ướt", "đuôi", "vẫy"]}], "vocab": ["chắc khỏe", "vàng óng", "mềm mượt", "tròn tròn", "vểnh lên", "đen láy", "tròn xoe", "lanh lợi", "ươn ướt", "vẫy tít"], "patterns": ["Tả bao quát trước", "Đi từ đầu → mắt → mũi → đuôi", "Thêm so sánh ngắn: ... như ..."]}, {"id": "action", "type": "body", "title": "Thân bài 2: hoạt động", "purpose": "Tả Milu canh nhà, nhận biết người lạ/người quen và chơi với em.", "refs": [[2, 0], [2, 1], [2, 2], [2, 3], [2, 4], [2, 5]], "ideaGroups": [{"label": "Khôn ngoan, có ích", "terms": ["khôn ngoan", "có ích", "canh chừng"]}, {"label": "Báo người lạ", "terms": ["người lạ", "sủa", "gâu gâu", "báo"]}, {"label": "Mừng người quen", "terms": ["người quen", "vẫy đuôi", "mừng rỡ"]}, {"label": "Chơi với em", "terms": ["ném bóng", "chạy nhanh", "ngậm quả bóng"]}], "vocab": ["khôn ngoan", "có ích", "lim dim", "canh chừng", "sủa vang", "vui vẻ", "mừng rỡ", "nhanh nhẹn", "ngước mắt"], "patterns": ["Tả việc thường ngày", "Dùng cặp ý: người lạ / người quen", "Kể một hoạt động em chơi cùng con vật"]}, {"id": "feeling", "type": "body", "title": "Thân bài 3: tình cảm", "purpose": "Làm rõ sự trung thành và việc Milu biết an ủi em.", "refs": [[3, 0], [3, 1], [3, 2], [3, 3]], "ideaGroups": [{"label": "Trung thành", "terms": ["trung thành", "quấn quýt"]}, {"label": "Luôn bên cạnh", "terms": ["vui", "buồn", "bên cạnh"]}, {"label": "Biết an ủi", "terms": ["điểm chưa tốt", "dụi đầu", "an ủi"]}, {"label": "Cảm xúc của em", "terms": ["ấm áp", "lòng mình", "cảm thấy"]}], "vocab": ["trung thành", "quấn quýt", "nhẹ nhàng", "dụi đầu", "an ủi", "ấm áp", "thân thiết"], "patterns": ["Kể một kỉ niệm ngắn", "Nêu cảm xúc của em", "Dùng từ cảm xúc: vui, buồn, ấm áp"]}, {"id": "end", "type": "end", "title": "Kết bài: tình cảm và lời hứa", "purpose": "Khẳng định tình yêu quý Milu và lời hứa chăm sóc.", "refs": [[4, 0], [4, 1], [4, 2]], "ideaGroups": [{"label": "Tình cảm", "terms": ["yêu quý", "Milu"]}, {"label": "Vai trò trong gia đình", "terms": ["giữ nhà", "người bạn", "thân thiết"]}, {"label": "Lời hứa chăm sóc", "terms": ["chăm sóc", "khỏe mạnh", "vui vẻ", "ở bên"]}], "vocab": ["yêu quý", "người bạn thân thiết", "chăm sóc", "khỏe mạnh", "vui vẻ", "ở bên gia đình"], "patterns": ["Nêu tình cảm", "Nêu vai trò của con vật", "Kết bằng lời hứa chăm sóc"]}]}, {"id": "cat", "emoji": "🐱", "title": "Bài 2: Tả con mèo", "name": "cô mèo Mi Mi", "theme": "cat", "animalWords": ["mèo", "Mi Mi", "meo", "bắt chuột", "ria mép", "cuộn len", "cửa sổ"], "paras": [{"part": "Mở bài", "sentences": ["Trong cuộc sống, mỗi con vật nuôi đều mang đến cho con người một niềm vui riêng.", "Có con vật giúp canh nhà, có con vật báo thức mỗi sáng, lại có con vật giúp bắt chuột rất giỏi.", "Với em, con vật đáng yêu và gần gũi nhất chính là cô mèo Mi Mi của gia đình em."]}, {"part": "Thân bài - ngoại hình", "sentences": ["Mi Mi đã sống với nhà em được hơn một năm.", "Cô có thân hình nhỏ nhắn, mềm mại.", "Bộ lông của cô gồm ba màu: trắng, vàng và xám, trông như một chiếc áo bông xinh xắn.", "Cái đầu Mi Mi tròn như quả cam nhỏ, đôi tai xinh xinh luôn vểnh lên để nghe ngóng.", "Đôi mắt cô to, trong veo như hai viên bi ve.", "Chiếc mũi hồng hồng lúc nào cũng phập phồng, còn mấy sợi ria mép trắng cong cong trông thật duyên dáng."]}, {"part": "Thân bài - hoạt động/ích lợi", "sentences": ["Mi Mi rất nhanh nhẹn và có ích.", "Ban ngày, cô thường nằm cuộn tròn bên cửa sổ để sưởi nắng.", "Bốn chiếc chân nhỏ có đệm thịt êm nên mỗi bước đi hầu như không phát ra tiếng động.", "Mỗi khi phát hiện chuột trong bếp hay ngoài vườn, cô liền rón rén bước tới, đôi mắt nhìn chăm chú.", "Chỉ một lát sau, Mi Mi đã phóng vụt đi nhanh như mũi tên.", "Nhờ có Mi Mi, nhà em ít hẳn chuột phá phách."]}, {"part": "Thân bài - tính nết/tình cảm", "sentences": ["Điều em thích nhất ở Mi Mi là vẻ đáng yêu và tinh nghịch.", "Khi vui, cô cong chiếc đuôi dài lên rồi chạy vòng quanh chân em.", "Khi buồn ngủ, Mi Mi nằm cuộn tròn như một cuộn len nhỏ.", "Mỗi lần được em gãi nhẹ dưới cằm, cô lại lim dim đôi mắt và kêu “meo… meo…” nghe thật dễ thương.", "Ngoài lúc bắt chuột, cô còn rất thích chơi với cuộn len và quả bóng nhỏ."]}, {"part": "Kết bài", "sentences": ["Em rất yêu quý cô mèo Mi Mi.", "Với gia đình em, Mi Mi không chỉ là con vật nuôi để bắt chuột mà còn là một người bạn nhỏ thân thiết.", "Em sẽ luôn chăm sóc cô thật tốt để Mi Mi mãi khỏe mạnh, vui vẻ và ở bên gia đình em thật lâu."]}], "outline": [{"id": "intro", "type": "intro", "title": "Mở bài: giới thiệu Mi Mi", "purpose": "Dẫn từ con vật nuôi rồi giới thiệu cô mèo Mi Mi.", "refs": [[0, 0], [0, 1], [0, 2]], "ideaGroups": [{"label": "Con vật nuôi mang niềm vui", "terms": ["con vật nuôi", "niềm vui", "cuộc sống"]}, {"label": "Nêu ích lợi chung", "terms": ["canh nhà", "báo thức", "bắt chuột"]}, {"label": "Giới thiệu Mi Mi", "terms": ["mèo", "Mi Mi", "gia đình", "gần gũi", "đáng yêu"]}], "vocab": ["con vật nuôi", "niềm vui riêng", "bắt chuột", "đáng yêu", "gần gũi", "cô mèo"], "patterns": ["Dẫn chung → giới thiệu con vật", "Nêu đúng tên Mi Mi", "Mở bài ngắn, rõ"]}, {"id": "look", "type": "body", "title": "Thân bài 1: ngoại hình", "purpose": "Tả dáng nhỏ nhắn, bộ lông và các bộ phận đáng yêu của Mi Mi.", "refs": [[1, 0], [1, 1], [1, 2], [1, 3], [1, 4], [1, 5]], "ideaGroups": [{"label": "Thời gian sống / dáng vẻ", "terms": ["hơn một năm", "thân hình", "nhỏ nhắn", "mềm mại"]}, {"label": "Bộ lông", "terms": ["bộ lông", "trắng", "vàng", "xám", "áo bông"]}, {"label": "Đầu, tai, mắt", "terms": ["đầu", "tai", "mắt", "trong veo", "bi ve"]}, {"label": "Mũi, ria mép", "terms": ["mũi", "hồng hồng", "ria mép", "duyên dáng"]}], "vocab": ["nhỏ nhắn", "mềm mại", "trắng", "vàng", "xám", "xinh xắn", "trong veo", "phập phồng", "ria mép", "duyên dáng"], "patterns": ["Tả thân hình rồi bộ lông", "Dùng so sánh: như áo bông / viên bi", "Nhắc đủ mắt, mũi, ria mép"]}, {"id": "action", "type": "body", "title": "Thân bài 2: hoạt động và ích lợi", "purpose": "Tả Mi Mi sưởi nắng, đi nhẹ, bắt chuột giỏi.", "refs": [[2, 0], [2, 1], [2, 2], [2, 3], [2, 4], [2, 5]], "ideaGroups": [{"label": "Nhanh nhẹn, có ích", "terms": ["nhanh nhẹn", "có ích"]}, {"label": "Thói quen ban ngày", "terms": ["cuộn tròn", "cửa sổ", "sưởi nắng"]}, {"label": "Dáng đi nhẹ", "terms": ["chân nhỏ", "đệm thịt", "không phát ra tiếng động"]}, {"label": "Bắt chuột", "terms": ["chuột", "rón rén", "phóng vụt", "mũi tên", "ít hẳn"]}], "vocab": ["nhanh nhẹn", "cuộn tròn", "sưởi nắng", "đệm thịt", "rón rén", "chăm chú", "phóng vụt", "mũi tên", "phá phách"], "patterns": ["Tả dáng đi nhẹ", "Tả cách bắt chuột theo trình tự", "Nêu ích lợi cho gia đình"]}, {"id": "feeling", "type": "body", "title": "Thân bài 3: đáng yêu, tinh nghịch", "purpose": "Tả vẻ đáng yêu, tiếng kêu và trò chơi của Mi Mi.", "refs": [[3, 0], [3, 1], [3, 2], [3, 3], [3, 4]], "ideaGroups": [{"label": "Đáng yêu, tinh nghịch", "terms": ["đáng yêu", "tinh nghịch"]}, {"label": "Cử chỉ khi vui/buồn ngủ", "terms": ["cong chiếc đuôi", "vòng quanh", "cuộn tròn", "cuộn len"]}, {"label": "Tiếng kêu, được vuốt ve", "terms": ["gãi nhẹ", "lim dim", "meo", "dễ thương"]}, {"label": "Trò chơi", "terms": ["cuộn len", "quả bóng"]}], "vocab": ["đáng yêu", "tinh nghịch", "cong đuôi", "cuộn tròn", "lim dim", "meo meo", "dễ thương", "cuộn len", "quả bóng"], "patterns": ["Tả khi vui / khi buồn ngủ", "Thêm âm thanh: meo meo", "Kết thúc bằng trò chơi yêu thích"]}, {"id": "end", "type": "end", "title": "Kết bài: tình cảm và lời hứa", "purpose": "Nêu tình yêu quý Mi Mi và lời hứa chăm sóc.", "refs": [[4, 0], [4, 1], [4, 2]], "ideaGroups": [{"label": "Tình cảm", "terms": ["yêu quý", "Mi Mi"]}, {"label": "Vai trò trong gia đình", "terms": ["bắt chuột", "người bạn nhỏ", "thân thiết"]}, {"label": "Lời hứa chăm sóc", "terms": ["chăm sóc", "khỏe mạnh", "vui vẻ", "ở bên"]}], "vocab": ["yêu quý", "bắt chuột", "người bạn nhỏ", "thân thiết", "chăm sóc", "khỏe mạnh", "vui vẻ"], "patterns": ["Nêu tình cảm", "Nêu ích lợi và vai trò", "Kết bằng lời hứa"]}]}, {"id": "rooster", "emoji": "🐓", "title": "Bài 3: Tả con gà trống", "name": "chú gà trống", "theme": "rooster", "animalWords": ["gà trống", "gà", "gáy", "ò ó o", "mào", "đuôi", "thóc", "đàn gà"], "paras": [{"part": "Mở bài", "sentences": ["Trong cuộc sống, mỗi con vật nuôi đều mang đến cho con người một niềm vui riêng.", "Có con vật giúp canh nhà, có con vật giúp bắt chuột, lại có con vật cất tiếng gáy vang để báo hiệu ngày mới.", "Với em, con vật oai phong và gần gũi nhất chính là chú gà trống của gia đình em."]}, {"part": "Thân bài - ngoại hình", "sentences": ["Chú gà trống đã sống trong khu vườn nhà em được khá lâu.", "Chú có thân hình to khỏe, dáng vẻ thật oai vệ.", "Bộ lông của chú rực rỡ nhiều màu: đỏ, vàng, nâu và xanh đen.", "Khi ánh nắng chiếu vào, bộ lông ấy óng ánh rất đẹp.", "Trên đầu chú là chiếc mào đỏ tươi, dựng đứng như một bông hoa mào gà.", "Đôi mắt chú nhỏ nhưng sáng và nhanh nhẹn.", "Cái mỏ vàng cứng, nhọn, mỗi khi mổ thóc lại phát ra tiếng “cốc cốc” nghe rất vui tai."]}, {"part": "Thân bài - hoạt động/ích lợi", "sentences": ["Chú gà trống rất chăm chỉ và có ích.", "Sáng nào cũng vậy, khi trời còn mờ sương, chú đã nhảy lên đống rơm trước sân, vươn cổ cất tiếng gáy vang: “Ò ó o o!”.", "Tiếng gáy của chú trong trẻo, dõng dạc, như chiếc đồng hồ báo thức gọi mọi người bắt đầu một ngày mới.", "Ban ngày, chú dẫn đàn gà đi kiếm ăn quanh vườn.", "Thỉnh thoảng, chú bới đất tìm giun rồi gọi gà mái và gà con đến ăn."]}, {"part": "Thân bài - vẻ oai phong", "sentences": ["Điều em thích nhất ở chú gà trống là vẻ oai phong và dũng cảm.", "Nổi bật nhất là chiếc đuôi dài cong vút của chú.", "Những chiếc lông đuôi xanh đen, óng mượt xòe ra trông như chiếc quạt nhỏ.", "Đôi chân chú cao, chắc khỏe, có những chiếc móng sắc nhọn.", "Mỗi bước đi, chú lại ưỡn ngực, lắc lư cái đầu, trông thật kiêu hãnh.", "Khi có con vật lạ đến gần đàn gà, chú liền xù lông, dang cánh để bảo vệ đàn của mình."]}, {"part": "Kết bài", "sentences": ["Em rất yêu quý chú gà trống nhà em.", "Với gia đình em, chú không chỉ là con vật nuôi báo thức mỗi sáng mà còn là hình ảnh thân quen của sân vườn.", "Em sẽ chăm cho chú ăn thóc đầy đủ để chú luôn khỏe mạnh và tiếp tục cất tiếng gáy vang chào ngày mới."]}], "outline": [{"id": "intro", "type": "intro", "title": "Mở bài: giới thiệu gà trống", "purpose": "Dẫn từ con vật nuôi rồi giới thiệu chú gà trống.", "refs": [[0, 0], [0, 1], [0, 2]], "ideaGroups": [{"label": "Con vật nuôi mang niềm vui", "terms": ["con vật nuôi", "niềm vui", "cuộc sống"]}, {"label": "Nêu ích lợi chung", "terms": ["canh nhà", "bắt chuột", "gáy", "báo hiệu ngày mới"]}, {"label": "Giới thiệu gà trống", "terms": ["gà trống", "oai phong", "gần gũi", "gia đình"]}], "vocab": ["con vật nuôi", "niềm vui riêng", "cất tiếng gáy", "báo hiệu ngày mới", "oai phong", "gần gũi"], "patterns": ["Dẫn chung → giới thiệu con vật", "Nhấn vào tiếng gáy / oai phong", "Mở bài ngắn gọn"]}, {"id": "look", "type": "body", "title": "Thân bài 1: ngoại hình", "purpose": "Tả thân hình, lông, mào, mắt, mỏ của chú gà trống.", "refs": [[1, 0], [1, 1], [1, 2], [1, 3], [1, 4], [1, 5], [1, 6]], "ideaGroups": [{"label": "Dáng vẻ bao quát", "terms": ["khu vườn", "thân hình", "to khỏe", "oai vệ"]}, {"label": "Bộ lông", "terms": ["bộ lông", "rực rỡ", "đỏ", "vàng", "nâu", "xanh đen", "óng ánh"]}, {"label": "Mào, mắt", "terms": ["mào", "đỏ tươi", "mắt", "sáng", "nhanh nhẹn"]}, {"label": "Mỏ, âm thanh", "terms": ["mỏ", "cứng", "nhọn", "mổ thóc", "cốc cốc"]}], "vocab": ["to khỏe", "oai vệ", "rực rỡ", "óng ánh", "đỏ tươi", "dựng đứng", "nhanh nhẹn", "vui tai"], "patterns": ["Tả bao quát trước", "Tả lông → mào → mắt → mỏ", "Dùng màu sắc nổi bật"]}, {"id": "action", "type": "body", "title": "Thân bài 2: hoạt động và ích lợi", "purpose": "Tả tiếng gáy sáng và việc dẫn đàn kiếm ăn.", "refs": [[2, 0], [2, 1], [2, 2], [2, 3], [2, 4]], "ideaGroups": [{"label": "Chăm chỉ, có ích", "terms": ["chăm chỉ", "có ích"]}, {"label": "Gáy sáng", "terms": ["mờ sương", "đống rơm", "vươn cổ", "gáy", "ò ó o"]}, {"label": "Báo thức", "terms": ["trong trẻo", "dõng dạc", "đồng hồ báo thức", "ngày mới"]}, {"label": "Dẫn đàn kiếm ăn", "terms": ["dẫn đàn", "kiếm ăn", "bới đất", "tìm giun", "gà con"]}], "vocab": ["chăm chỉ", "mờ sương", "vươn cổ", "gáy vang", "trong trẻo", "dõng dạc", "kiếm ăn", "bới đất"], "patterns": ["Tả hoạt động buổi sáng trước", "Nêu ích lợi tiếng gáy", "Tả ban ngày dẫn đàn kiếm ăn"]}, {"id": "feeling", "type": "body", "title": "Thân bài 3: oai phong, dũng cảm", "purpose": "Tả đuôi, chân, dáng đi và việc bảo vệ đàn.", "refs": [[3, 0], [3, 1], [3, 2], [3, 3], [3, 4], [3, 5]], "ideaGroups": [{"label": "Oai phong, dũng cảm", "terms": ["oai phong", "dũng cảm"]}, {"label": "Đuôi nổi bật", "terms": ["đuôi", "cong vút", "xanh đen", "chiếc quạt"]}, {"label": "Chân, dáng đi", "terms": ["chân", "móng sắc", "ưỡn ngực", "kiêu hãnh"]}, {"label": "Bảo vệ đàn", "terms": ["con vật lạ", "xù lông", "dang cánh", "bảo vệ đàn"]}], "vocab": ["oai phong", "dũng cảm", "cong vút", "óng mượt", "chiếc quạt", "chắc khỏe", "kiêu hãnh", "xù lông", "dang cánh"], "patterns": ["Tả đặc điểm nổi bật nhất", "Dùng so sánh cho chiếc đuôi", "Nêu hành động bảo vệ đàn"]}, {"id": "end", "type": "end", "title": "Kết bài: tình cảm và lời hứa", "purpose": "Nêu tình yêu quý và ý nghĩa của chú gà trống.", "refs": [[4, 0], [4, 1], [4, 2]], "ideaGroups": [{"label": "Tình cảm", "terms": ["yêu quý", "gà trống"]}, {"label": "Vai trò trong gia đình", "terms": ["báo thức", "hình ảnh thân quen", "sân vườn"]}, {"label": "Lời hứa chăm sóc", "terms": ["chăm", "ăn thóc", "khỏe mạnh", "gáy vang", "ngày mới"]}], "vocab": ["yêu quý", "báo thức", "hình ảnh thân quen", "sân vườn", "ăn thóc", "khỏe mạnh", "gáy vang"], "patterns": ["Nêu tình cảm", "Nêu ý nghĩa tiếng gáy", "Kết bằng lời hứa chăm sóc"]}]}];
-const STORE = "van_ta_con_vat_upgrade_v1";
-const STOP = new Set("trong,cuoc,song,moi,con,vat,nuoi,deu,mang,den,cho,nguoi,mot,niem,vui,rieng,voi,em,chinh,la,cua,gia,dinh,duoc,nhung,khi,thi,rat,luon,nhu,co,va,da,nhà,ngay".split(","));
-const COMMON_TYPOS = [
-  ["chăm sóc","chăm xóc"],["khỏe mạnh","khoẻ mạnh"],["trung thành","trung thanh"],["vẫy đuôi","vảy đuôi"],
-  ["mượt mà","mược mà"],["ươn ướt","ươn ướt"],["rón rén","rón rén"],["mũi tên","mủi tên"],
-  ["dõng dạc","dỏng dạc"],["mào gà","mầu gà"],["thân thiết","than thiết"],["ấm áp","ấm ấp"],
-  ["kiêu hãnh","kiêu hảnh"],["xù lông","sù lông"],["phập phồng","phập phòng"]
+const TEXTS = [
+  {
+    "id": "dog",
+    "emoji": "🐶",
+    "theme": "bac",
+    "title": "Miêu tả con vật nuôi trong nhà – Chú chó Nâu",
+    "author": "Bài văn tham khảo",
+    "coreWords": [
+      "thế giới động vật", "chú chó tên Nâu", "người bạn nhỏ", "gắn bó", 
+      "khỏe mạnh", "màu nâu vàng óng", "mềm mượt như tơ", "chiếc yên xe đạp", 
+      "vểnh lên", "đen láy", "tròn xoe", "thông minh", "lanh lợi", "ươn ướt", "đánh hơi",
+      "trắng nhọn", "ve vẩy", "khôn ngoan", "trung thành", "bật dậy sủa vang", "vui vẻ",
+      "tình cảm", "an ủi", "ấm áp", "người bạn thân thiết", "kỷ niệm đẹp"
+    ],
+    "paras": [
+      "<strong>Mở bài:</strong> Trong thế giới động vật, mỗi loài đều có những nét đáng yêu và thú vị riêng. Đối với em, con vật mà em yêu quý nhất chính là chú chó tên Nâu của gia đình em. Chú không chỉ là vật nuôi thân thuộc mà còn là người bạn nhỏ luôn gắn bó với em mỗi ngày.",
+      "<strong>Thân bài – ngoại hình:</strong> Nâu đã sống cùng gia đình em hơn hai năm. Chú có thân hình khỏe mạnh cùng với bộ lông màu nâu vàng óng, mềm mượt như tơ nên cả nhà đã đặt cho chú cái tên là Nâu. Cái đầu của Nâu tựa như 1 chiếc yên xe đạp nhưng hơi tròn hơn, nổi bật với đôi tai lúc nào cũng vểnh lên như đang lắng nghe mọi âm thanh xung quanh. Đôi mắt chú đen láy, tròn xoe, ánh lên vẻ thông minh và lanh lợi. Chiếc mũi nhỏ màu đen luôn ươn ướt và đánh hơi rất giỏi. Hàm răng trắng nhọn giúp chú gặm xương vô cùng điêu luyện. Cái đuôi dài lúc nào cũng ve vẩy vui vẻ mỗi khi em đi học về.",
+      "<strong>Thân bài – hoạt động:</strong> Nâu là một chú chó rất khôn ngoan và trung thành. Ban ngày, chú thường nằm trước sân để trông nhà. Tuy có lúc lim dim ngủ nhưng chỉ cần nghe tiếng động lạ là chú lập tức bật dậy sủa vang như báo cho cả nhà biết. Nhưng khi gặp người quen, chú lại vui vẻ chạy ra, vẫy đuôi mừng rỡ. Mỗi buổi chiều, em thường chơi ném bóng với Nâu. Chú chạy rất nhanh, ngậm quả bóng mang về cho em rồi ngước mắt nhìn như muốn được khen.",
+      "<strong>Thân bài – tình cảm:</strong> Điều em yêu quý nhất ở Nâu chính là sự trung thành và tình cảm của chú dành cho gia đình. Dù ai trong nhà buồn hay vui, chú cũng luôn ngồi ở bên cạnh. Có lần em bị điểm kém nên rất buồn, em ngồi im lặng ngoài hiên nhà. Nâu lặng lẽ bước đến, nhẹ nhàng dụi đầu vào chân em rồi nằm cạnh như muốn an ủi. Hành động nhỏ ấy khiến em cảm thấy lòng mình ấm áp hơn rất nhiều.",
+      "<strong>Kết bài:</strong> Đối với em, Nâu không chỉ là một con vật nuôi mà còn là người bạn thân thiết luôn mang đến niềm vui và sự yêu thương. Em đã có rất nhiều kỷ niệm đẹp cùng chú chó đáng yêu này. Em sẽ chăm sóc cho Nâu thật khỏe mạnh để chơi đùa cùng nhau mỗi ngày."
+    ]
+  },
+  {
+    "id": "elephant",
+    "emoji": "🐘",
+    "theme": "earth",
+    "title": "Miêu tả con vật hoang dã (ở sở thú) – Chú voi",
+    "author": "Bài văn tham khảo",
+    "coreWords": [
+      "tham quan sở thú", "to lớn", "thân thiện", "xám đậm", "nhăn nheo", "đồ sộ", 
+      "chậm rãi", "chắc chắn", "cột đình", "chiếc vòi", "linh hoạt", "cuốn thức ăn", 
+      "chiếc quạt lớn", "hiền và dịu dàng", "ngà trắng", "mạnh mẽ", "oai vệ", 
+      "phun lên người", "thông minh", "người chăm sóc", "hiền lành", "tình cảm", 
+      "gắn bó", "bảo vệ voi", "bình yên", "đáng yêu"
+    ],
+    "paras": [
+      "<strong>Mở bài:</strong> Trong thế giới động vật, mỗi loài đều có những nét đáng yêu và thú vị riêng. Vào dịp nghỉ hè năm trước, em đã có dịp được tham quan sở thú có rất nhiều loài vật nhưng khiến em ấn tượng nhất chính là chú voi to lớn và thân thiện.",
+      "<strong>Thân bài – ngoại hình:</strong> Chú voi ở sở thú có thân hình vô cùng to lớn, cao hơn rất nhiều so với mọi người đứng xung quanh. Làn da của chú màu xám đậm, dày và nhăn nheo như những lớp đất khô. Dù thân hình đồ sộ nhưng chú bước đi rất chậm rãi và chắc chắn. Bốn chân voi to như bốn cái cột đình, giúp chú đứng vững vàng. Đặc biệt nhất là chiếc vòi dài và linh hoạt của chú. Chiếc vòi ấy có thể cuốn thức ăn, hút nước và còn dùng để nghịch đùa rất khéo léo. Hai chiếc tai to bè như hai chiếc quạt lớn. Đôi mắt voi nhỏ trông rất hiền và dịu dàng. Hai chiếc ngà trắng cong cong nhô ra hai bên làm chú trông thật mạnh mẽ và oai vệ.",
+      "<strong>Thân bài – hoạt động:</strong> Ở sở thú, chú voi được rất nhiều người yêu thích và đứng xem. Chú thường dùng vòi cuốn từng bó cỏ rồi từ từ đưa vào miệng ăn ngon lành. Có lúc, chú còn dùng vòi hút nước rồi phun lên người để tắm mát khiến mọi người thích thú reo cười. Khi có khách tham quan cho chuối hoặc mía, chú voi nhẹ nhàng dùng vòi nhận lấy. Em thấy chú rất thông minh vì chú biết làm theo sự hướng dẫn của người chăm sóc. Thỉnh thoảng, chú còn khẽ lắc đầu và phe phẩy tai như đang chào mọi người. Dù thân hình to lớn nhưng chú không hề đáng sợ mà ngược lại còn rất hiền lành và thân thiện.",
+      "<strong>Thân bài – tình cảm:</strong> Em được nghe nói voi là loài động vật thông minh, sống tình cảm và rất gắn bó với đồng loại. Em mong rằng mọi người sẽ luôn bảo vệ voi và không săn bắt chúng để những chú voi đáng yêu ấy có thể được sống bình yên. Chuyến đi sở thú hôm đó đã giúp em hiểu thêm nhiều điều thú vị về loài voi.",
+      "<strong>Kết bài:</strong> Chú voi ở sở thú đã để lại trong em rất nhiều ấn tượng đẹp cả về thân hình to lớn cũng như tính cách và sự thông minh. Em hy vọng sẽ có dịp quay lại sở thú để được gặp chú voi thêm nhiều lần nữa. Đối với em, voi là một loài động vật đáng yêu, thông minh và vô cùng đặc biệt."
+    ]
+  }
 ];
-let state = { essay:"dog", outline:"intro", tool:"practice", modelMode:"full", keywords:true, memoryLevel:"medium" };
-let progress = loadProgress();
-let arrange = { key:"", chosen:[] };
 
-function loadProgress(){
-  try{return JSON.parse(localStorage.getItem(STORE)||"{}")}catch(e){return {}}
-}
-function saveProgress(){
-  localStorage.setItem(STORE, JSON.stringify(progress));
-}
-function toast(t){
-  const el=document.getElementById("toast"); el.textContent=t; el.classList.add("show");
-  clearTimeout(toast.t); toast.t=setTimeout(()=>el.classList.remove("show"),1300);
-}
-function norm(t){
-  return String(t||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d").replace(/[^a-z0-9\s]/g," ").replace(/\s+/g," ").trim();
-}
-function words(t){return norm(t).split(" ").filter(Boolean)}
-function uniq(a){return [...new Set(a)]}
+let state = { text: "dog", modelMode: "whole", keywords: false };
+
 function esc(s){return String(s||"").replace(/[&<>'"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","'":"&#39;",'"':"&quot;"}[c]))}
-function essay(){return ESSAYS.find(e=>e.id===state.essay)}
-function outline(){return essay().outline.find(o=>o.id===state.outline)}
-function outlineBy(id){return essay().outline.find(o=>o.id===id)}
-function partClass(t){return t==="intro"?"part-intro":t==="end"?"part-end":"part-body"}
-function partText(t){return t==="intro"?"Mở bài":t==="end"?"Kết bài":"Thân bài"}
-function draftKey(eid=state.essay, oid=state.outline){return eid+"::"+oid}
-function getDraft(eid=state.essay, oid=state.outline){return progress.drafts?.[draftKey(eid,oid)] || ""}
-function setDraft(text,eid=state.essay,oid=state.outline){progress.drafts=progress.drafts||{};progress.drafts[draftKey(eid,oid)] = text;saveProgress()}
-function getMemory(eid=state.essay, oid=state.outline){return progress.memory?.[draftKey(eid,oid)] || {text:"",score:0}}
-function setMemory(text,score,eid=state.essay,oid=state.outline){progress.memory=progress.memory||{};progress.memory[draftKey(eid,oid)] = {text,score,at:Date.now()};saveProgress()}
-function targetSentences(o=outline(), e=essay()){return o.refs.map(([pi,si])=>e.paras[pi].sentences[si])}
-function targetText(o=outline(), e=essay()){return targetSentences(o,e).join(" ")}
-function importantWords(o=outline(), e=essay()){
-  const base = targetText(o,e);
-  const list = uniq(words(base).filter(w=>w.length>=4 && !STOP.has(w)));
-  const terms = o.ideaGroups.flatMap(g=>g.terms.flatMap(t=>words(t)));
-  return uniq([...terms,...list]).filter(w=>w.length>=3).slice(0,42);
-}
-function detectAnimal(text){
-  const n=norm(text);
-  return ESSAYS.map(e=>({id:e.id,name:e.name,emoji:e.emoji,score:e.animalWords.reduce((a,w)=>a+(n.includes(norm(w))?1:0),0)})).sort((a,b)=>b.score-a.score)[0];
-}
-function countSentences(text){return (String(text).match(/[.!?。！？]+/g)||[]).length || (text.trim()?1:0)}
-function spellingIssues(text){
-  const n=norm(text), raw=String(text||"");
-  let issues=[];
-  COMMON_TYPOS.forEach(([right,wrong])=>{ if(norm(right)!==norm(wrong) && n.includes(norm(wrong))) issues.push(`Có thể sai: “${wrong}” → nên viết “${right}”.`) });
-  const rep = raw.match(/\b([A-Za-zÀ-ỹ]+)\s+\1\b/gi)||[];
-  rep.slice(0,3).forEach(x=>issues.push(`Bị lặp từ: “${x}”.`));
-  if(raw.trim() && !/^[A-ZÀ-Ỹ]/.test(raw.trim())) issues.push("Nên viết hoa chữ cái đầu đoạn.");
-  if(raw.trim() && !/[.!?]$/.test(raw.trim())) issues.push("Nên có dấu chấm, dấu hỏi hoặc dấu cảm ở cuối đoạn.");
-  return issues.slice(0,6);
-}
-function scoreText(text, o=outline(), e=essay()){
-  const n=norm(text), w=words(text), wc=w.length, sentences=countSentences(text);
-  const ideaHits=o.ideaGroups.map(g=>({...g,hit:g.terms.some(t=>n.includes(norm(t)))}));
-  const ideaScore=Math.round(ideaHits.filter(x=>x.hit).length/Math.max(1,o.ideaGroups.length)*100);
 
-  const animal=detectAnimal(text);
-  const wrongAnimal = animal.score>=2 && animal.id!==e.id;
+function currentText(){return TEXTS.find(t=>t.id===state.text)}
 
-  const type=o.type;
-  const expected = type==="body" ? [55,115] : [32,70];
-  let lengthScore = wc>=expected[0] && wc<=expected[1] ? 100 : wc<expected[0] ? Math.round(Math.min(100,wc/expected[0]*100)) : Math.max(72,100-Math.round((wc-expected[1])*1.2));
-
-  const vocabTerms=uniq([...(o.vocab||[]), ...o.ideaGroups.flatMap(g=>g.terms)]);
-  const vocabHits=vocabTerms.filter(t=>n.includes(norm(t)));
-  const vocabScore=Math.min(100, Math.round(vocabHits.length/Math.max(4, Math.min(8,vocabTerms.length))*100));
-
-  const hasCompare=/( nhu | giong | tua | trong nhu | nhu mot | nhu hai | chiec | bong hoa | vien bi | mui ten | dong ho | chiec quat )/.test(" "+n+" ");
-  const hasFeeling=/(yeu|thich|vui|buon|am ap|gan gui|than thiet|dang yeu|oai phong|tu hao|mong|cham soc|co ich)/.test(n);
-  const hasConnector=/(khong chi|ma con|ban ngay|moi khi|nhung khi|du|luc ay|voi gia dinh|nho co|dieu em thich)/.test(n);
-  const expressionScore=Math.min(100,(sentences>=2?25:12)+(hasCompare?25:0)+(hasFeeling?25:0)+(hasConnector?15:0)+(wc>22?10:0));
-
-  let structureChecks=[];
-  if(type==="intro") structureChecks=[
-    {label:"Có câu dẫn chung",hit:/(cuoc song|con vat nuoi|niem vui)/.test(n)},
-    {label:"Có giới thiệu con vật",hit:e.animalWords.some(x=>n.includes(norm(x)))},
-    {label:"Có quan hệ với gia đình/em",hit:/(gia dinh|voi em|nha em|gan gui)/.test(n)}
-  ];
-  else if(type==="end") structureChecks=[
-    {label:"Nêu tình cảm",hit:/(yeu|thich|quy|gan gui)/.test(n)},
-    {label:"Nêu vai trò/ý nghĩa",hit:/(nguoi ban|than thiet|co ich|bao thuc|giu nha|bat chuot|san vuon)/.test(n)},
-    {label:"Có lời hứa/mong muốn",hit:/(cham soc|cham|mong|khoe manh|o ben|mai)/.test(n)}
-  ];
-  else structureChecks=[
-    {label:"Có nhắc đúng con vật",hit:e.animalWords.some(x=>n.includes(norm(x)))},
-    {label:"Có ít nhất 2 chi tiết cụ thể",hit:ideaHits.filter(x=>x.hit).length>=2},
-    {label:"Có trình tự/quan hệ ý",hit:hasConnector || sentences>=3}
-  ];
-  const structureScore=Math.round(structureChecks.filter(x=>x.hit).length/structureChecks.length*100);
-  const spell=spellingIssues(text);
-  const mechanicsScore=Math.max(40,100-spell.length*12-(sentences<=1&&wc>55?10:0));
-  let final=Math.round(ideaScore*.34 + structureScore*.18 + expressionScore*.17 + vocabScore*.12 + lengthScore*.10 + mechanicsScore*.09);
-  if(wrongAnimal) final=Math.max(0, final-18);
-
-  let suggestions=[];
-  const missing=ideaHits.filter(x=>!x.hit);
-  if(wc<expected[0]) suggestions.push(`Đoạn còn ngắn: nên thêm khoảng ${expected[0]-wc} từ hoặc 1-2 ý nhỏ.`);
-  if(missing.length) suggestions.push("Cần bổ sung ý: "+missing.map(x=>x.label).join(", ")+".");
-  if(!hasCompare && type==="body") suggestions.push("Nên thêm một hình ảnh so sánh ngắn: “như ...”, “trông như ...”.");
-  if(!hasConnector) suggestions.push("Nên dùng từ nối để mạch lạc hơn: “Mỗi khi...”, “Không chỉ... mà còn...”, “Điều em thích nhất...”.");
-  if(type==="end" && !hasFeeling) suggestions.push("Kết bài cần rõ tình cảm của em và lời hứa chăm sóc.");
-  if(wrongAnimal) suggestions.unshift(`Bài đang có nhiều dấu hiệu viết về ${animal.name}, hãy kiểm tra lại con vật đang chọn.`);
-  if(final>=80 && ideaScore>=75 && !wrongAnimal) suggestions.push("Đạt mục tiêu 80%: đủ ý chính, có thể chuyển sang luyện viết lại từ trí nhớ.");
-
-  return {final, ideaScore, structureScore, expressionScore, vocabScore, lengthScore, mechanicsScore, wc, sentences, ideaHits, missing, structureChecks, spell, suggestions, wrongAnimal, animal, vocabHits};
-}
-function cls(v){return v>=80?"score-good":v>=60?"score-mid":"score-bad"}
-function scoreStatus(v){return v>=85?"Rất tốt":v>=80?"Đạt 80%":v>=65?"Gần đạt":v>=45?"Cần bổ sung":"Cần viết lại"}
-function bar(label,val){
-  return `<div class="bar-row"><div class="bar-top"><span>${label}</span><span>${val}%</span></div><div class="bar"><div style="width:${Math.max(4,val)}%"></div></div></div>`;
-}
-function scorePanel(r){
-  const mainClass=r.final>=80?"good":r.final>=60?"mid":"bad";
-  return `<div class="score-box">
-    <div class="big-score ${mainClass}"><div class="score-num">${r.final}%</div><div class="score-status">${scoreStatus(r.final)}</div></div>
-    ${bar("Đủ ý dàn bài",r.ideaScore)}${bar("Cấu trúc đoạn",r.structureScore)}${bar("Diễn đạt hay",r.expressionScore)}${bar("Từ vựng đúng",r.vocabScore)}${bar("Độ dài",r.lengthScore)}${bar("Chính tả/trình bày",r.mechanicsScore)}
-    <div class="feedback">
-      <h4>Checklist ý chính</h4>
-      <div class="idea-grid">${r.ideaHits.map(x=>`<div class="idea-item ${x.hit?'hit':'miss'}">${x.hit?'✅':'⚠️'} ${esc(x.label)}</div>`).join("")}</div>
-      <h4 style="margin-top:12px">Gợi ý cải thiện</h4>
-      <ul>${r.suggestions.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>
-      ${r.spell.length?`<h4 style="margin-top:12px">Chính tả / trình bày</h4><ul>${r.spell.map(s=>`<li>${esc(s)}</li>`).join("")}</ul>`:`<div class="tag-list"><span class="tag good">Chưa thấy lỗi trình bày cơ bản</span></div>`}
-    </div>
-  </div>`;
-}
-
-function renderTabs(){
-  document.getElementById("essayTabs").innerHTML = ESSAYS.map(e=>`
-    <button class="essay-tab ${e.theme} ${e.id===state.essay?'active':''}" onclick="selectEssay('${e.id}')">
-      <div class="emoji">${e.emoji}</div><div><div class="tab-title">${e.title}</div><div class="tab-sub">${e.name}</div></div>
-    </button>`).join("");
-}
-function renderDashboard(){
-  const e=essay();
-  const scores=e.outline.map(o=>scoreText(getDraft(e.id,o.id),o,e).final);
-  const memScores=e.outline.map(o=>getMemory(e.id,o.id).score||0);
-  const avg=Math.round(scores.reduce((a,b)=>a+b,0)/scores.length);
-  const memAvg=Math.round(memScores.reduce((a,b)=>a+b,0)/memScores.length);
-  const done=scores.filter(x=>x>=80).length;
-  const advice=avg>=80 && memAvg>=70 ? "Sẵn sàng ôn lại" : avg>=70 ? "Cần luyện nhớ" : "Cần bổ sung ý";
-  document.getElementById("dashboard").innerHTML=`
-    <div class="metric"><div class="metric-label">Điểm viết trung bình</div><div class="metric-value">${avg}%</div><div class="metric-note">${done}/${scores.length} đoạn đạt 80%</div></div>
-    <div class="metric"><div class="metric-label">Độ nhớ bài</div><div class="metric-value">${memAvg}%</div><div class="metric-note">Từ công cụ viết lại</div></div>
-    <div class="metric"><div class="metric-label">Đang học</div><div class="metric-value">${e.emoji} ${outline().title.split(":")[0]}</div><div class="metric-note">${outline().purpose}</div></div>
-    <div class="metric"><div class="metric-label">Đánh giá thành công</div><div class="metric-value">${advice}</div><div class="metric-note">Mục tiêu: viết đủ ý + nhớ mạch</div></div>`;
-}
-function renderOutline(){
-  const e=essay();
-  document.getElementById("outlineList").innerHTML=e.outline.map((o,i)=>{
-    const r=scoreText(getDraft(e.id,o.id),o,e);
-    const mem=getMemory(e.id,o.id).score||0;
-    return `<button class="outline-card ${o.id===state.outline?'active':''} ${r.final>=80?'done':''}" onclick="selectOutline('${o.id}')">
-      <div class="outline-row"><span class="part-pill ${partClass(o.type)}">${i+1}. ${partText(o.type)}</span><span class="score-pill ${cls(r.final)}">${r.final}%</span></div>
-      <div class="outline-title">${esc(o.title)}</div>
-      <div class="outline-purpose">${esc(o.purpose)}</div>
-      <div class="progress-track"><div class="progress-fill" style="width:${r.final}%"></div></div>
-      <div class="small" style="margin-top:6px">Nhớ bài: ${mem}%</div>
-    </button>`;
-  }).join("");
-  document.getElementById("activeLabel").textContent = `${e.title} • ${outline().title}`;
-  document.getElementById("floatLabel").textContent = `${e.emoji} ${outline().title}`;
-}
-function highlightKeywords(text,o=outline()){
-  if(!state.keywords) return esc(text);
-  let out=esc(text);
-  const keys=uniq(o.ideaGroups.flatMap(g=>g.terms).concat(o.vocab||[])).sort((a,b)=>b.length-a.length).slice(0,18);
-  keys.forEach(k=>{
-    if(!k || k.length<3) return;
-    const safe=esc(k).replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+function highlightTerms(html){
+  if(!state.keywords) return html;
+  const t = currentText();
+  const terms = [...t.coreWords].sort((a,b)=>b.length-a.length);
+  let out = html;
+  terms.forEach(term=>{
+    const safe=esc(term).replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
     out=out.replace(new RegExp(safe,"gi"),m=>`<span class="keyword">${m}</span>`);
   });
   return out;
 }
+
+function renderTabs(){
+  document.getElementById("textTabs").innerHTML=TEXTS.map(t=>`
+    <button class="text-tab ${t.theme} ${t.id===state.text?'active':''}" onclick="selectText('${t.id}')">
+      <div class="emoji">${t.emoji}</div><div><div class="tab-title">${t.title}</div><div class="tab-sub">${t.author}</div></div>
+    </button>`).join("");
+}
+
+function updateButtons(){
+  document.getElementById("btnWhole").className = state.modelMode==="whole" ? "btn btn-primary" : "btn btn-light";
+  document.getElementById("btnPara").className = state.modelMode==="full" ? "btn btn-primary" : "btn btn-light";
+  document.getElementById("btnKw").className = state.keywords ? "btn btn-active" : "btn btn-light";
+}
+
 function renderModel(){
-  const e=essay(), o=outline();
-  const activeSet=new Set(o.refs.map(x=>x.join("-")));
-  document.getElementById("modelText").innerHTML=e.paras.map((p,pi)=>{
-    const has=p.sentences.some((s,si)=>activeSet.has(pi+"-"+si));
-    if(state.modelMode==="focus" && !has) return "";
-    return `<div class="para ${has?'active':''} ${!has && state.modelMode==='focus'?'dim':''}">
-      <div class="para-label">${esc(p.part)}</div>
-      <div>${p.sentences.map((s,si)=>`<span class="sentence ${activeSet.has(pi+'-'+si)?'hl':''}">${highlightKeywords(s,o)}</span>`).join(" ")}</div>
-    </div>`;
-  }).join("");
-}
-function renderToolTabs(){
-  document.querySelectorAll(".tool-tab").forEach(b=>b.classList.toggle("active",b.dataset.tool===state.tool));
-}
-function renderTools(){
-  renderToolTabs();
-  if(state.tool==="practice") renderPractice();
-  if(state.tool==="memory") renderMemory();
-  if(state.tool==="vocab") renderVocab();
-  if(state.tool==="exercise") renderExercise();
-}
-function renderPractice(){
-  const e=essay(), o=outline(), text=getDraft();
-  const r=text.trim()?scoreText(text,o,e):null;
-  document.getElementById("toolRoot").innerHTML=`
-    <div class="task-card">
-      <h3 class="task-title">${esc(o.title)}</h3>
-      <p>${esc(o.purpose)} Không cần chép y nguyên bài mẫu, nhưng cần đủ ý và diễn đạt tự nhiên.</p>
-      <div class="idea-grid">${o.ideaGroups.map(g=>`<div class="idea-item">${esc(g.label)}<br><span class="small">${esc(g.terms.slice(0,3).join(" • "))}</span></div>`).join("")}</div>
-    </div>
-    <div class="work-grid">
-      <div>
-        <textarea id="practiceText" placeholder="Viết đoạn của em ở đây. Hãy dùng dàn ý, từ vựng và cách diễn đạt của riêng em..." oninput="onPracticeInput()">${esc(text)}</textarea>
-        <div class="livebar">
-          <div class="live-item"><div class="live-label">Số từ</div><div class="live-value" id="wcLive">${r?r.wc:0}</div></div>
-          <div class="live-item"><div class="live-label">Con vật nhận biết</div><div class="live-value" id="animalLive">${text?detectAnimal(text).emoji+" "+detectAnimal(text).name:"Chưa rõ"}</div></div>
-          <div class="live-item"><div class="live-label">Mức hiện tại</div><div class="live-value" id="miniScore">${r?r.final+"%":"Chưa chấm"}</div></div>
-        </div>
-        <div class="btn-row" style="margin-top:12px">
-          <button class="btn btn-green" onclick="checkPractice()">✅ Chấm đoạn này</button>
-          <button class="btn btn-purple" onclick="setTool('vocab')">💬 Xem từ vựng gợi ý</button>
-          <button class="btn btn-amber" onclick="setTool('memory')">🧠 Luyện viết lại</button>
-          <button class="btn btn-light" onclick="clearDraft()">Xóa đoạn</button>
-        </div>
-      </div>
-      <div id="practiceScore">${r?scorePanel(r):`<div class="score-box"><div class="big-score"><div class="score-status">Chưa có bài viết</div><p class="small">Viết xong nhấn “Chấm đoạn này”. Công cụ sẽ góp ý thiếu ý, từ vựng, cấu trúc và độ thành công.</p></div></div>`}</div>
-    </div>`;
-}
-function onPracticeInput(){
-  const text=document.getElementById("practiceText").value;
-  setDraft(text);
-  const r=scoreText(text);
-  document.getElementById("wcLive").textContent=r.wc;
-  const a=detectAnimal(text); document.getElementById("animalLive").textContent=text.trim()?a.emoji+" "+a.name:"Chưa rõ";
-  document.getElementById("miniScore").textContent=text.trim()?r.final+"%":"Chưa chấm";
-  renderDashboard(); renderOutline();
-}
-function checkPractice(){
-  const text=document.getElementById("practiceText").value; setDraft(text);
-  document.getElementById("practiceScore").innerHTML=scorePanel(scoreText(text));
-  renderAll(false); setTool("practice",false);
-  toast("Đã chấm và lưu đoạn viết");
-}
-function clearDraft(){
-  if(!confirm("Xóa đoạn đang viết?")) return;
-  setDraft(""); renderAll(); toast("Đã xóa đoạn");
+  const t=currentText();
+  if(state.modelMode==="whole"){
+    document.getElementById("modelText").innerHTML=`<article class="full-essay">
+      <h2>${esc(t.title)}</h2>
+      <div class="full-meta">Tác giả: ${esc(t.author)}</div>
+      ${t.paras.map(p=>`<p>${highlightTerms(p)}</p>`).join("")}
+    </article>`;
+  } else {
+    document.getElementById("modelText").innerHTML=t.paras.map((p,idx)=>{
+      return `<div class="para">
+        <div class="para-label">Đoạn ${idx+1}</div>
+        <div class="para-text">${highlightTerms(p)}</div>
+      </div>`;
+    }).join("");
+  }
+  updateButtons();
 }
 
-function renderVocab(){
-  const o=outline();
-  const general = ["Không chỉ... mà còn...","Mỗi khi...","Ban ngày...","Điều em thích nhất...","Nhờ có...","Với gia đình em..."];
-  const byType = o.type==="intro" ? ["dẫn chung","giới thiệu","gần gũi","đáng yêu","oai phong","gia đình em"] :
-    o.type==="end" ? ["yêu quý","thân thiết","người bạn","chăm sóc","khỏe mạnh","ở bên thật lâu"] :
-    ["nhỏ nhắn","chắc khỏe","nhanh nhẹn","mềm mượt","rực rỡ","lim dim","rón rén","dõng dạc","kiêu hãnh","ấm áp"];
-  document.getElementById("toolRoot").innerHTML=`
-    <div class="task-card"><h3 class="task-title">Gợi ý cách viết cho: ${esc(o.title)}</h3><p>Không chèn cả câu mẫu. Hãy chọn vài từ/cụm từ phù hợp rồi tự đặt câu của em.</p></div>
-    <div class="vocab-grid">
-      <div class="vocab-card"><h3>🎯 Từ khóa bắt buộc nên có</h3><div class="tag-list">${o.ideaGroups.flatMap(g=>g.terms).map(t=>`<span class="tag" onclick="insertPhrase('${escAttr(t)}')">${esc(t)}</span>`).join("")}</div></div>
-      <div class="vocab-card"><h3>✨ Từ miêu tả giúp bài hay hơn</h3><div class="tag-list">${uniq([...(o.vocab||[]),...byType]).map(t=>`<span class="tag warn" onclick="insertPhrase('${escAttr(t)}')">${esc(t)}</span>`).join("")}</div></div>
-      <div class="vocab-card"><h3>🔗 Cách nối ý</h3><div class="tag-list">${general.map(t=>`<span class="tag good" onclick="insertPhrase('${escAttr(t)}')">${esc(t)}</span>`).join("")}</div></div>
-      <div class="vocab-card"><h3>🛠 Mẫu cách viết, không phải câu chép</h3><div class="pattern-list">${o.patterns.map(p=>`<div class="pattern">${esc(p)}</div>`).join("")}</div></div>
-    </div>
-    <div class="task-card" style="margin-top:12px"><p><b>Cách dùng:</b> bấm vào từ/cụm từ để đưa vào đoạn luyện viết. Sau đó tự thêm chủ ngữ, hình ảnh và cảm xúc của em.</p></div>`;
-}
-function escAttr(s){return String(s||"").replace(/\\/g,"\\\\").replace(/'/g,"\\'").replace(/"/g,"&quot;")}
-function insertPhrase(t){
-  const existing=getDraft();
-  const add = existing && !existing.endsWith(" ") ? " " + t : t;
-  setDraft(existing + add);
-  toast("Đã thêm cụm từ vào bài luyện viết");
-  setTool("practice");
+function setModelMode(m){
+  state.modelMode=m; 
+  renderModel();
 }
 
-function clozeText(level){
-  const o=outline(), text=targetText();
-  const keys=uniq(o.ideaGroups.flatMap(g=>g.terms).concat(o.vocab||[])).sort((a,b)=>b.length-a.length);
-  const ratio = level==="easy"?0.35:level==="medium"?0.58:0.88;
-  const selected=keys.slice(0,Math.max(4,Math.ceil(keys.length*ratio)));
-  let out=esc(text);
-  selected.forEach(k=>{
-    const safe=esc(k).replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
-    out=out.replace(new RegExp(safe,"gi"),m=>`<span class="blank">${m}</span>`);
-  });
-  return out;
-}
-function renderMemory(){
-  const o=outline(), m=getMemory(), text=m.text||"";
-  const model = state.memoryLevel==="hide" ? "Chỉ nhìn dàn ý và từ khóa bên phải, không nhìn bài mẫu." : clozeText(state.memoryLevel);
-  document.getElementById("toolRoot").innerHTML=`
-    <div class="task-card"><h3 class="task-title">Viết lại từ trí nhớ: ${esc(o.title)}</h3><p>Áp dụng cho tất cả các đoạn. Mục tiêu không phải chép đúng từng chữ, mà là nhớ đúng mạch ý và tự viết lại trôi chảy.</p></div>
-    <div class="memory-grid">
-      <div>
-        <div class="btn-row" style="margin-bottom:10px">
-          <button class="btn btn-light" onclick="setMemoryLevel('easy')">Dễ: ẩn ít từ</button>
-          <button class="btn btn-light" onclick="setMemoryLevel('medium')">Vừa: ẩn nhiều từ</button>
-          <button class="btn btn-light" onclick="setMemoryLevel('hard')">Khó: ẩn gần hết từ khóa</button>
-          <button class="btn btn-light" onclick="setMemoryLevel('hide')">Không nhìn bài mẫu</button>
-        </div>
-        <div class="memory-model">${model}</div>
-        <textarea id="memoryText" style="margin-top:12px" placeholder="Gấp bài mẫu lại rồi viết lại đoạn này theo trí nhớ...">${esc(text)}</textarea>
-        <div class="btn-row" style="margin-top:12px">
-          <button class="btn btn-green" onclick="checkMemory()">🧠 Kiểm tra độ nhớ</button>
-          <button class="btn btn-primary" onclick="copyPracticeToMemory()">Lấy đoạn luyện viết sang đây</button>
-          <button class="btn btn-light" onclick="nextOutline()">Đoạn tiếp theo</button>
-        </div>
-        <div id="memoryResult" class="memory-result">${m.score?memoryPanel(memoryScore(text),true):""}</div>
-      </div>
-      <div class="score-box">
-        <h4 style="margin:0 0 8px">Bản đồ ý cần nhớ</h4>
-        <div class="compare-list">${o.ideaGroups.map(g=>`<div class="compare-item"><b>${esc(g.label)}</b><br><span class="small">${esc(g.terms.join(" • "))}</span></div>`).join("")}</div>
-        <h4 style="margin:14px 0 8px">Mẹo học thuộc</h4>
-        <ul style="margin:0;padding-left:18px;color:#475569;font-weight:760;line-height:1.55">
-          <li>Nhớ dàn ý trước, câu chữ để sau.</li>
-          <li>Mỗi đoạn chỉ cần thuộc 3-4 ý chính.</li>
-          <li>Viết lại 2 lần: lần 1 nhìn từ khóa, lần 2 không nhìn.</li>
-        </ul>
-      </div>
-    </div>`;
-}
-function setMemoryLevel(lv){state.memoryLevel=lv;renderMemory()}
-function memoryScore(text){
-  const base=scoreText(text);
-  const n=norm(text);
-  const keys=importantWords().slice(0,28);
-  const hit=keys.filter(k=>n.includes(k)).length;
-  const recall=Math.round(hit/Math.max(1,keys.length)*100);
-  const order = outline().ideaGroups.map(g=>g.terms.some(t=>n.includes(norm(t)))).filter(Boolean).length;
-  const orderScore=Math.round(order/outline().ideaGroups.length*100);
-  const final=Math.round(base.ideaScore*.42 + recall*.28 + base.expressionScore*.18 + orderScore*.12);
-  const missingKeys=keys.filter(k=>!n.includes(k)).slice(0,10);
-  return {...base, recall, orderScore, memoryFinal:final, missingKeys};
-}
-function memoryPanel(r, saved=false){
-  const ok=r.memoryFinal>=80;
-  return `<div class="score-box">
-    <div class="big-score ${ok?'good':r.memoryFinal>=60?'mid':'bad'}"><div class="score-num">${r.memoryFinal}%</div><div class="score-status">${ok?'Nhớ tốt đoạn này':'Cần luyện thêm'}</div></div>
-    ${bar("Nhớ đúng ý",r.ideaScore)}${bar("Nhớ từ khóa",r.recall)}${bar("Mạch ý",r.orderScore)}${bar("Diễn đạt",r.expressionScore)}
-    <div class="feedback"><h4>Đánh giá độ thành công</h4>
-    <ul>
-      <li>${ok?"Có thể chuyển sang đoạn tiếp theo hoặc viết lại không nhìn bài mẫu.":"Nên đọc lại dàn ý, sau đó viết lại lần nữa."}</li>
-      <li>${r.missing.length?"Thiếu ý: "+r.missing.map(x=>x.label).join(", "):"Đã đủ các ý chính."}</li>
-      <li>${r.missingKeys.length?"Từ khóa chưa nhớ: "+r.missingKeys.join(", "):"Từ khóa quan trọng đã xuất hiện tốt."}</li>
-    </ul></div>
-  </div>`;
-}
-function checkMemory(){
-  const text=document.getElementById("memoryText").value;
-  const r=memoryScore(text); setMemory(text,r.memoryFinal);
-  document.getElementById("memoryResult").innerHTML=memoryPanel(r);
-  renderDashboard(); renderOutline(); toast("Đã đánh giá độ nhớ bài");
-}
-function copyPracticeToMemory(){
-  const text=getDraft(); document.getElementById("memoryText").value=text; toast("Đã đưa đoạn luyện viết sang phần nhớ bài");
+function toggleKeywords(){
+  state.keywords=!state.keywords; 
+  renderModel();
 }
 
-function renderExercise(){
-  const o=outline();
-  const key=draftKey()+"::arrange";
-  if(arrange.key!==key){arrange={key,chosen:[]}}
-  const sentences=targetSentences();
-  const shuffled=sentences.map((s,i)=>({s,i})).sort((a,b)=>((a.s.length*7+a.i*13)%17)-((b.s.length*7+b.i*13)%17));
-  document.getElementById("toolRoot").innerHTML=`
-    <div class="task-card"><h3 class="task-title">Ghi nhớ nhanh: ${esc(o.title)}</h3><p>Bài tập đơn giản, không rối: sắp xếp câu, nhớ từ khóa, lật thẻ dàn ý.</p></div>
-    <div class="exercise-grid">
-      <div class="exercise-box">
-        <h3>1) Sắp xếp câu theo đúng mạch đoạn</h3>
-        <div class="bank">${shuffled.map(x=>`<button class="chip ${arrange.chosen.some(c=>c.i===x.i)?'used':''}" onclick="pickSentence(${x.i})">${esc(x.s)}</button>`).join("")}</div>
-        <h3 style="margin-top:12px">Đoạn em ghép</h3>
-        <div class="answer-bank">${arrange.chosen.map((x,i)=>`<div class="answer-chip">${i+1}. ${esc(x.s)}</div>`).join("")}</div>
-        <div class="btn-row" style="margin-top:10px"><button class="btn btn-green" onclick="checkArrange()">Kiểm tra</button><button class="btn btn-light" onclick="resetArrange()">Làm lại</button></div>
-        <div id="arrangeResult" style="margin-top:10px;font-weight:1000"></div>
-      </div>
-      <div class="exercise-box">
-        <h3>2) Nhớ từ khóa của đoạn</h3>
-        <p class="small">Viết 4-6 từ khóa em nhớ được, cách nhau bằng dấu phẩy.</p>
-        <textarea id="keywordRecall" style="min-height:110px" placeholder="Ví dụ: bộ lông, đôi mắt, mũi, đuôi..."></textarea>
-        <div class="btn-row" style="margin-top:10px"><button class="btn btn-primary" onclick="checkKeywordRecall()">Kiểm tra từ khóa</button></div>
-        <div id="keywordResult" class="tag-list"></div>
-      </div>
-    </div>
-    <div class="exercise-box" style="margin-top:14px">
-      <h3>3) Thẻ nhớ dàn ý</h3>
-      <div class="flashcards">${o.ideaGroups.map((g,i)=>`<div class="flashcard" onclick="this.classList.toggle('open')"><div class="flash-q">Ý ${i+1}: ${esc(g.label)}?</div><div class="flash-a">${esc(g.terms.join(" • "))}</div></div>`).join("")}</div>
-    </div>`;
-}
-function pickSentence(i){
-  const sentences=targetSentences(); if(arrange.chosen.some(x=>x.i===i)) return;
-  arrange.chosen.push({i,s:sentences[i]}); renderExercise();
-}
-function checkArrange(){
-  const ok=arrange.chosen.length===targetSentences().length && arrange.chosen.every((x,i)=>x.i===i);
-  document.getElementById("arrangeResult").innerHTML = ok ? `<span style="color:#15803d">✅ Đúng mạch đoạn. Em đã nhớ thứ tự ý.</span>` : `<span style="color:#b91c1c">❌ Chưa đúng. Hãy nhớ: câu dẫn → chi tiết chính → chi tiết bổ sung/cảm xúc.</span>`;
-}
-function resetArrange(){arrange.chosen=[];renderExercise()}
-function checkKeywordRecall(){
-  const input=norm(document.getElementById("keywordRecall").value);
-  const terms=outline().ideaGroups.flatMap(g=>g.terms);
-  const hits=terms.filter(t=>input.includes(norm(t)));
-  const score=Math.round(hits.length/Math.min(6,terms.length)*100);
-  const missing=terms.filter(t=>!input.includes(norm(t))).slice(0,6);
-  document.getElementById("keywordResult").innerHTML=
-    `<span class="tag ${score>=80?'good':score>=50?'warn':'bad'}">Nhớ từ khóa: ${Math.min(100,score)}%</span>`+
-    hits.slice(0,8).map(t=>`<span class="tag good">Đã nhớ: ${esc(t)}</span>`).join("")+
-    missing.slice(0,5).map(t=>`<span class="tag warn">Gợi ý nhớ thêm: ${esc(t)}</span>`).join("");
+function selectText(id){
+  state.text=id; 
+  renderTabs(); 
+  renderModel();
 }
 
-function setTool(t, rerender=true){state.tool=t;if(rerender)renderTools();document.querySelector(".panel:nth-of-type(2)")?.scrollIntoView({behavior:"smooth",block:"start"})}
-function jumpTool(t){setTool(t);document.getElementById("toolRoot").scrollIntoView({behavior:"smooth",block:"center"})}
-function setModelMode(m){state.modelMode=m;renderModel()}
-function toggleKeywords(){state.keywords=!state.keywords;renderModel()}
-function selectEssay(id){state.essay=id;state.outline=essay().outline[0].id;state.tool="practice";arrange={key:"",chosen:[]};renderAll()}
-function selectOutline(id){state.outline=id;arrange={key:"",chosen:[]};renderAll();document.getElementById("modelText").scrollIntoView({behavior:"smooth",block:"start"})}
-function nextOutline(){
-  const e=essay(); const idx=e.outline.findIndex(o=>o.id===state.outline); state.outline=e.outline[(idx+1)%e.outline.length].id; arrange={key:"",chosen:[]}; renderAll();
-}
-function renderAll(scroll=false){renderTabs();renderDashboard();renderOutline();renderModel();renderTools();}
-renderAll();
+// Init
+renderTabs();
+renderModel();
+
 </script>
 </body>
 </html>
