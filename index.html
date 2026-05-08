@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>TẬP LÀM VĂN LỚP 4</title>
 <style>
-
 :root{
   --bg:#f7fbff;--ink:#122033;--muted:#64748b;--line:#dbeafe;--card:#fff;
   --primary:#2563eb;--primary2:#1d4ed8;--green:#16a34a;--amber:#f59e0b;--red:#ef4444;--purple:#7c3aed;
@@ -38,37 +37,46 @@ button{font-family:inherit}
 .text-tab.active{background:#fff;border-color:#93c5fd;box-shadow:0 0 0 4px rgba(147,197,253,.28),0 14px 28px rgba(15,23,42,.08)}
 .emoji{width:54px;height:54px;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:30px;flex:0 0 auto;color:#fff}
 .earth .emoji{background:linear-gradient(135deg,#10b981,#2563eb)}.bac .emoji{background:linear-gradient(135deg,#ef4444,#f59e0b)}
-.tab-title{font-size:1.05rem;font-weight:1000}.tab-sub{margin-top:3px;color:var(--muted);font-weight:800;font-size:.88rem}
+.tab-title{font-size:1.05rem;font-weight:800}
+.tab-sub{margin-top:3px;color:var(--muted);font-weight:600;font-size:.88rem}
 .layout{margin-top:24px;}
 .panel{background:rgba(255,255,255,.93);border:1px solid rgba(255,255,255,.93);border-radius:26px;box-shadow:var(--shadow);overflow:hidden}
-.panel-head{padding:14px 17px;background:linear-gradient(135deg,rgba(37,99,235,.10),rgba(8,145,178,.10));border-bottom:1px solid #e7eef8;font-weight:1000;color:#102a5c;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;}
+.panel-head{padding:14px 17px;background:linear-gradient(135deg,rgba(37,99,235,.10),rgba(8,145,178,.10));border-bottom:1px solid #e7eef8;font-weight:800;color:#102a5c;display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;}
 .panel-body{padding:20px}
 .reader-actions{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
-.btn{border:0;border-radius:999px;padding:10px 14px;font-weight:1000;cursor:pointer;transition:.16s;line-height:1.2}
+.btn{border:0;border-radius:999px;padding:10px 14px;font-weight:700;cursor:pointer;transition:.16s;line-height:1.2}
 .btn:hover{transform:translateY(-1px);box-shadow:0 8px 18px rgba(15,23,42,.12)}
-.btn-primary{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff}.btn-light{background:#fff;color:#102a5c;border:1px solid #dbe7f5}
+.btn-primary{background:linear-gradient(135deg,#2563eb,#1d4ed8);color:#fff}
+.btn-light{background:#fff;color:#102a5c;border:1px solid #dbe7f5}
 .btn-active{background:#eff6ff;color:#1d4ed8;border:1px solid #93c5fd;box-shadow:0 0 0 2px rgba(147,197,253,.28)}
-.legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.legend span{border-radius:999px;padding:6px 9px;background:#f8fafc;border:1px solid #e2e8f0;font-weight:850;font-size:.83rem;color:#526179}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.legend span{border-radius:999px;padding:6px 9px;background:#f8fafc;border:1px solid #e2e8f0;font-weight:700;font-size:.83rem;color:#526179}
 .model-paras{display:flex;flex-direction:column;gap:14px}
 .para{background:#fff;border:1px solid #e5edf6;border-radius:20px;padding:18px;transition:.16s}
 .para:hover{box-shadow:0 8px 24px rgba(15,23,42,.06)}
-.para-label{display:inline-flex;border-radius:999px;background:#eef2ff;color:#3730a3;padding:4px 9px;font-size:.75rem;font-weight:1000;margin-bottom:8px}
-.para-text{line-height:1.95;font-weight:650;font-size:1.05rem}
-.para-text strong{font-weight:1000;color:#0f172a}
+.para-label{display:inline-flex;border-radius:999px;background:#eef2ff;color:#3730a3;padding:4px 9px;font-size:.75rem;font-weight:800;margin-bottom:8px}
+
+/* Đã chỉnh sửa: Căn đều và giảm độ đậm chữ */
+.para-text{line-height:1.8;font-weight:400;font-size:1.1rem;text-align:justify;}
+.para-text strong{font-weight:700;color:#0f172a}
+
 .full-essay{background:#fff;border:1px solid #e5edf6;border-radius:24px;padding:26px;box-shadow:0 10px 24px rgba(15,23,42,.06)}
 .full-essay h2{margin:0 0 6px;color:#102a5c;font-size:1.6rem;line-height:1.25;text-transform:uppercase}
-.full-meta{color:#64748b;font-weight:900;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid #e2e8f0}
-.full-essay p{margin:0 0 16px;line-height:1.95;font-weight:650;text-indent:1.65em;font-size:1.05rem}.full-essay p:last-child{margin-bottom:0}
-.keyword{background:#dcfce7;color:#166534;border-radius:6px;padding:2px 5px;font-weight:900;border:1px solid #bbf7d0}
+.full-meta{color:#64748b;font-weight:600;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid #e2e8f0}
+
+/* Đã chỉnh sửa: Căn đều và giảm độ đậm chữ */
+.full-essay p{margin:0 0 16px;line-height:1.8;font-weight:400;text-indent:1.65em;font-size:1.1rem;text-align:justify;}
+.full-essay p:last-child{margin-bottom:0}
+
+.keyword{background:#dcfce7;color:#166534;border-radius:6px;padding:2px 5px;font-weight:700;border:1px solid #bbf7d0}
 .floating{position:fixed;left:50%;bottom:max(16px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:50;display:flex;gap:8px;align-items:center;background:rgba(255,255,255,.94);border:1px solid #dbe7f5;border-radius:999px;padding:8px 11px;box-shadow:0 18px 44px rgba(15,23,42,.16);backdrop-filter:blur(10px)}
-.float-btn{border:0;background:#2563eb;color:#fff;width:38px;height:38px;border-radius:50%;font-weight:1000;cursor:pointer}
+.float-btn{border:0;background:#2563eb;color:#fff;width:38px;height:38px;border-radius:50%;font-weight:800;cursor:pointer}
 @media(max-width:560px){
   .container{width:min(100% - 18px,1240px);padding-top:14px}
   .text-tabs{grid-template-columns:1fr}
   .hero{padding:20px 16px;border-radius:22px}
   .panel{border-radius:22px}
 }
-
 </style>
 </head>
 <body>
@@ -76,7 +84,6 @@ button{font-family:inherit}
 <div class="container">
   <section class="hero">
     <h1>BÀI VĂN MIÊU TẢ ĐỘNG VẬT</h1>
-
   </section>
 
   <section id="textTabs" class="text-tabs"></section>
@@ -111,7 +118,7 @@ const TEXTS = [
     "emoji": "🐶",
     "theme": "bac",
     "title": "Miêu tả con vật nuôi trong nhà – Chú chó Nâu",
-    
+    "author": "Sưu tầm", 
     "coreWords": [
       "thế giới động vật", "chú chó tên Nâu", "người bạn nhỏ", "gắn bó", 
       "khỏe mạnh", "màu nâu vàng óng", "mềm mượt như tơ", "chiếc yên xe đạp", 
@@ -130,7 +137,7 @@ const TEXTS = [
     "emoji": "🐘",
     "theme": "earth",
     "title": "Miêu tả con vật hoang dã (ở sở thú) – Chú voi",
-
+    "author": "Sưu tầm",
     "coreWords": [
       "tham quan sở thú", "to lớn", "thân thiện", "xám đậm", "nhăn nheo", "đồ sộ", 
       "chậm rãi", "chắc chắn", "cột đình", "chiếc vòi", "linh hoạt", "cuốn thức ăn", 
